@@ -1,0 +1,25 @@
+services:
+  flaskapp:
+    build: .
+    command: python -u main.py
+    ports: 
+      - 5001:5001
+    volumes: 
+      - .:/app
+    links:
+      - db
+  db:
+    image: mongo:latest
+    hostname: python_mongo
+   
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+  
+    environment:
+      MONGO_INITDB_DATABASE: hunger_db
+      MONGO_INITDB_ROOT_USERNAME: ayeni
+      MONGO_INITDB_ROOT_PASSWORD: password
+      
+    
