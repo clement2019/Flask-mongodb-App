@@ -1,3 +1,4 @@
+from multiprocessing import process
 from flask import Flask, jsonify
 import pymongo 
 from pymongo import MongoClient
@@ -12,6 +13,7 @@ def collect_db():
                         authSource="admin")
     db = client["hunger_db"]
     return db
+
 
 
 @app.route("/")
@@ -35,4 +37,4 @@ def collect_food():
             db.close()
 
 if __name__=="__main__":
-    app.run(debug=True, port=5002,host="0.0.0.0")
+    app.run(debug=True, port=5003,host="0.0.0.0")
