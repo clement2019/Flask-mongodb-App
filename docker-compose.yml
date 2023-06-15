@@ -3,7 +3,7 @@ services:
     build: .
     command: python -u main.py
     ports: 
-      - 5001:5001
+      - 5002:5002
     volumes: 
       - .:/app
     links:

@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 app=Flask(__name__)
 
-def get_db():
+def collect_db():
     client = MongoClient(host='python_mongo',
                          port=27017, 
                          username='ayeni', 
@@ -20,10 +20,11 @@ def ping_server():
     return 'Welcome to Ayenis website; server running well.....'
 
 @app.route('/food')
-def get_food_stock():
+def collect_food():
+    #declare an empty string for Db
     db=""
     try:
-        db = get_db()
+        db = collect_db()
         _food_type = db.hunger_db.find()
         foods = [{"id": food["id"], "name": food["name"], "type": food["type"]} for food in _food_type]
         return jsonify({"_food_type": foods})
@@ -34,4 +35,4 @@ def get_food_stock():
             db.close()
 
 if __name__=="__main__":
-    app.run(debug=True, port=5001,host="0.0.0.0")
+    app.run(debug=True, port=5002,host="0.0.0.0")
