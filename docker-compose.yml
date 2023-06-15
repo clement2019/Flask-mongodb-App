@@ -15,7 +15,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+      - ./mongodb-init.js:/docker-entrypoint-initdb.d/mongodb-init.js.js:ro
   
     environment:
       MONGO_INITDB_DATABASE: hunger_db
